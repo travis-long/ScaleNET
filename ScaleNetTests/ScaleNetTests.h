@@ -6,8 +6,8 @@
 //  Copyright (c) 2013 Don Wilson. All rights reserved.
 //
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <XCTest/XCTest.h>
 
-@interface ScaleNetTests : SenTestCase
+@interface ScaleNetTests : XCTestCase
 
 @end

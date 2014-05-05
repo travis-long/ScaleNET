@@ -23,7 +23,6 @@
 		1ABE969D1768D5E4002400CB /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ABE969B1768D5E4002400CB /* MainStoryboard_iPhone.storyboard */; };
 		1ABE96A01768D5E4002400CB /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1ABE969E1768D5E4002400CB /* MainStoryboard_iPad.storyboard */; };
 		1ABE96A31768D5E4002400CB /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1ABE96A21768D5E4002400CB /* ViewController.m */; };
-		1ABE96AB1768D5E4002400CB /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABE96AA1768D5E4002400CB /* SenTestingKit.framework */; };
 		1ABE96AC1768D5E4002400CB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABE96831768D5E4002400CB /* UIKit.framework */; };
 		1ABE96AD1768D5E4002400CB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1ABE96851768D5E4002400CB /* Foundation.framework */; };
 		1ABE96B51768D5E4002400CB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1ABE96B31768D5E4002400CB /* InfoPlist.strings */; };
@@ -65,8 +64,7 @@
 		1ABE969F1768D5E4002400CB /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		1ABE96A11768D5E4002400CB /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		1ABE96A21768D5E4002400CB /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		1ABE96A91768D5E4002400CB /* ScaleNetTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScaleNetTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
-		1ABE96AA1768D5E4002400CB /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		1ABE96A91768D5E4002400CB /* ScaleNetTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ScaleNetTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1ABE96B21768D5E4002400CB /* ScaleNetTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ScaleNetTests-Info.plist"; sourceTree = "<group>"; };
 		1ABE96B41768D5E4002400CB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1ABE96B61768D5E4002400CB /* ScaleNetTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ScaleNetTests.h; sourceTree = "<group>"; };
@@ -93,7 +91,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1ABE96AB1768D5E4002400CB /* SenTestingKit.framework in Frameworks */,
 				1ABE96AC1768D5E4002400CB /* UIKit.framework in Frameworks */,
 				1ABE96AD1768D5E4002400CB /* Foundation.framework in Frameworks */,
 			);
@@ -121,7 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				1ABE96801768D5E4002400CB /* ScaleNet.app */,
-				1ABE96A91768D5E4002400CB /* ScaleNetTests.octest */,
+				1ABE96A91768D5E4002400CB /* ScaleNetTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -132,7 +129,6 @@
 				1ABE96831768D5E4002400CB /* UIKit.framework */,
 				1ABE96851768D5E4002400CB /* Foundation.framework */,
 				1ABE96871768D5E4002400CB /* CoreGraphics.framework */,
-				1ABE96AA1768D5E4002400CB /* SenTestingKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -224,8 +220,8 @@
 			);
 			name = ScaleNetTests;
 			productName = ScaleNetTests;
-			productReference = 1ABE96A91768D5E4002400CB /* ScaleNetTests.octest */;
-			productType = "com.apple.product-type.bundle";
+			productReference = 1ABE96A91768D5E4002400CB /* ScaleNetTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -233,8 +229,14 @@
 		1ABE96781768D5E4002400CB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastTestingUpgradeCheck = 0510;
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = "Don Wilson";
+				TargetAttributes = {
+					1ABE967F1768D5E4002400CB = {
+						DevelopmentTeam = ABRQBZ4XGC;
+					};
+				};
 			};
 			buildConfigurationList = 1ABE967B1768D5E4002400CB /* Build configuration list for PBXProject "ScaleNet" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -398,10 +400,11 @@
 		1A935BAE176A3FC100D92AE5 /* Adhoc Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScaleNet/ScaleNet-Prefix.pch";
 				INFOPLIST_FILE = "ScaleNet/ScaleNet-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -414,13 +417,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScaleNet/ScaleNet-Prefix.pch";
 				INFOPLIST_FILE = "ScaleNetTests/ScaleNetTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = "Adhoc Release";
 		};
@@ -455,10 +458,11 @@
 		1A935BB1176A457A00D92AE5 /* App Store Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScaleNet/ScaleNet-Prefix.pch";
 				INFOPLIST_FILE = "ScaleNet/ScaleNet-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -471,13 +475,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScaleNet/ScaleNet-Prefix.pch";
 				INFOPLIST_FILE = "ScaleNetTests/ScaleNetTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = "App Store Release";
 		};
@@ -542,10 +546,11 @@
 		1ABE96BC1768D5E4002400CB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScaleNet/ScaleNet-Prefix.pch";
 				INFOPLIST_FILE = "ScaleNet/ScaleNet-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -554,10 +559,11 @@
 		1ABE96BD1768D5E4002400CB /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScaleNet/ScaleNet-Prefix.pch";
 				INFOPLIST_FILE = "ScaleNet/ScaleNet-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -570,13 +576,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScaleNet/ScaleNet-Prefix.pch";
 				INFOPLIST_FILE = "ScaleNetTests/ScaleNetTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
@@ -587,13 +593,13 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
+					"$(inherited)",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ScaleNet/ScaleNet-Prefix.pch";
 				INFOPLIST_FILE = "ScaleNetTests/ScaleNetTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
 		};
