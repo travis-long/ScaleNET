@@ -110,6 +110,18 @@
     UIAlertView* alertEnterIP;
     UIAlertView* alertCalWeight;
     UIAlertView* alertCalUnload;
+    UIAlertView* alertPromptForQuickCal;
+    UIAlertView* alertCellCapacity;
+    UIAlertView* alertCellUnits;
+    UIAlertView* alertOpUnits;
+    UIAlertView* alertMvPerV;
+    UIAlertView* alertCellCount;
+    
+    double cell_capacity;
+    NSString* cell_units;
+    NSString* op_units;
+    double cell_mv_per_v;
+    NSInteger cell_count;
     
     NSString* ip;
     int nPort;

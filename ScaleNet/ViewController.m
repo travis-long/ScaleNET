@@ -525,27 +525,31 @@ enum ConnectionState connState = notConnected;
                 }
                 else
                 {
-                    alertCalWeight = [[UIAlertView alloc] initWithTitle:@"Calibration Weight" message:@"Place weight on scale before proceeding" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
-                    //UITextField *textField;
-            //textCalWeight = [[UITextField alloc] init];
-            //[textCalWeight setBackgroundColor:[UIColor whiteColor]];
-            //textCalWeight.delegate = self;
-            //textCalWeight.borderStyle = UITextBorderStyleLine;
-            //textCalWeight.frame = CGRectMake(15, 95, 255, 30);
-            //textCalWeight.font = [UIFont fontWithName:@"ArialMT" size:20];
-            //textCalWeight.placeholder = @"Enter the weight";
-            // textIPAddress.text = @"10.1.3.105";
-            //textCalWeight.textAlignment = UITextAlignmentCenter;
-            //textCalWeight.keyboardAppearance = UIKeyboardAppearanceAlert;
-            //textCalWeight.keyboardType = UIKeyboardTypeDecimalPad;
-            //[textCalWeight becomeFirstResponder];
-            //[alertCalWeight addSubview:textCalWeight];
-        
-                    [alertCalWeight setAlertViewStyle:UIAlertViewStylePlainTextInput];
-                    [alertCalWeight textFieldAtIndex:0].placeholder = @"Enter the weight";
-                    [alertCalWeight textFieldAtIndex:0].keyboardType = UIKeyboardTypeDecimalPad;
-            
-                    [alertCalWeight show];
+                    alertPromptForQuickCal = [[UIAlertView alloc] initWithTitle:@"Quick Cal?" message:@"Perform quick calibration?" delegate:self cancelButtonTitle:@"No" otherButtonTitles:@"Yes", nil];
+                    
+                    [alertPromptForQuickCal show];
+                    
+//                    alertCalWeight = [[UIAlertView alloc] initWithTitle:@"Calibration Weight" message:@"Place weight on scale before proceeding" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+//                    //UITextField *textField;
+//            //textCalWeight = [[UITextField alloc] init];
+//            //[textCalWeight setBackgroundColor:[UIColor whiteColor]];
+//            //textCalWeight.delegate = self;
+//            //textCalWeight.borderStyle = UITextBorderStyleLine;
+//            //textCalWeight.frame = CGRectMake(15, 95, 255, 30);
+//            //textCalWeight.font = [UIFont fontWithName:@"ArialMT" size:20];
+//            //textCalWeight.placeholder = @"Enter the weight";
+//            // textIPAddress.text = @"10.1.3.105";
+//            //textCalWeight.textAlignment = UITextAlignmentCenter;
+//            //textCalWeight.keyboardAppearance = UIKeyboardAppearanceAlert;
+//            //textCalWeight.keyboardType = UIKeyboardTypeDecimalPad;
+//            //[textCalWeight becomeFirstResponder];
+//            //[alertCalWeight addSubview:textCalWeight];
+//        
+//                    [alertCalWeight setAlertViewStyle:UIAlertViewStylePlainTextInput];
+//                    [alertCalWeight textFieldAtIndex:0].placeholder = @"Enter the weight";
+//                    [alertCalWeight textFieldAtIndex:0].keyboardType = UIKeyboardTypeDecimalPad;
+//            
+//                    [alertCalWeight show];
                 }
         
             }
@@ -593,6 +597,30 @@ enum ConnectionState connState = notConnected;
             lblMessage.text = @"CANCELLED";
             nMessageClearCnt = 10;
             nCalibrationInProgress = 0;
+        }
+        else if (alertView == alertPromptForQuickCal)
+        {
+            alertCalWeight = [[UIAlertView alloc] initWithTitle:@"Calibration Weight" message:@"Place weight on scale before proceeding" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+            //UITextField *textField;
+            //textCalWeight = [[UITextField alloc] init];
+            //[textCalWeight setBackgroundColor:[UIColor whiteColor]];
+            //textCalWeight.delegate = self;
+            //textCalWeight.borderStyle = UITextBorderStyleLine;
+            //textCalWeight.frame = CGRectMake(15, 95, 255, 30);
+            //textCalWeight.font = [UIFont fontWithName:@"ArialMT" size:20];
+            //textCalWeight.placeholder = @"Enter the weight";
+            // textIPAddress.text = @"10.1.3.105";
+            //textCalWeight.textAlignment = UITextAlignmentCenter;
+            //textCalWeight.keyboardAppearance = UIKeyboardAppearanceAlert;
+            //textCalWeight.keyboardType = UIKeyboardTypeDecimalPad;
+            //[textCalWeight becomeFirstResponder];
+            //[alertCalWeight addSubview:textCalWeight];
+            
+            [alertCalWeight setAlertViewStyle:UIAlertViewStylePlainTextInput];
+            [alertCalWeight textFieldAtIndex:0].placeholder = @"Enter the weight";
+            [alertCalWeight textFieldAtIndex:0].keyboardType = UIKeyboardTypeDecimalPad;
+            
+            [alertCalWeight show];
         }
         
         return; //If cancel or 0 length string the string doesn't matter
@@ -657,7 +685,117 @@ enum ConnectionState connState = notConnected;
             }
          
         }
-        
+        else if (alertView == alertPromptForQuickCal)
+        {
+            alertCellCapacity = [[UIAlertView alloc] initWithTitle:@"Quick Cal" message:@"Enter load cell capacity" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+            
+            [alertCellCapacity setAlertViewStyle:UIAlertViewStylePlainTextInput];
+            [alertCellCapacity textFieldAtIndex:0].placeholder = @"Enter capacity";
+            [alertCellCapacity textFieldAtIndex:0].keyboardType = UIKeyboardTypeDecimalPad;
+            
+            [alertCellCapacity show];
+        }
+        else if (alertView == alertCellCapacity)
+        {
+            cell_capacity = [[alertCellCapacity textFieldAtIndex:0] text].doubleValue;
+            
+            alertCellUnits = [[UIAlertView alloc] initWithTitle:@"Quick Cal" message:@"Enter load cell capacity units" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+            
+            [alertCellUnits setAlertViewStyle:UIAlertViewStylePlainTextInput];
+            [alertCellUnits textFieldAtIndex:0].placeholder = @"Enter cell capacity units";
+            [alertCellUnits textFieldAtIndex:0].keyboardType = UIKeyboardTypeAlphabet;
+            
+            [alertCellUnits show];
+        }
+        else if (alertView == alertCellUnits)
+        {
+            if ([[[alertCellUnits textFieldAtIndex:0] text] caseInsensitiveCompare:@"kg"] == NSOrderedSame)
+            {
+                cell_units = @"kg";
+            }
+            else if ([[[alertCellUnits textFieldAtIndex:0] text] caseInsensitiveCompare:@"lb"] == NSOrderedSame)
+            {
+                cell_units = @"lb";
+            }
+            
+            alertOpUnits = [[UIAlertView alloc] initWithTitle:@"Quick Cal" message:@"Enter operation units" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+            
+            [alertOpUnits setAlertViewStyle:UIAlertViewStylePlainTextInput];
+            [alertOpUnits textFieldAtIndex:0].placeholder = @"Enter operation units";
+            [alertOpUnits textFieldAtIndex:0].keyboardType = UIKeyboardTypeAlphabet;
+            
+            [alertOpUnits show];
+        }
+        else if (alertView == alertOpUnits)
+        {
+            if ([[[alertOpUnits textFieldAtIndex:0] text] caseInsensitiveCompare:@"kg"] == NSOrderedSame)
+            {
+                op_units = @"kg";
+            }
+            else if ([[[alertOpUnits textFieldAtIndex:0] text] caseInsensitiveCompare:@"lb"] == NSOrderedSame)
+            {
+                op_units = @"lb";
+            }
+            
+            alertMvPerV = [[UIAlertView alloc] initWithTitle:@"Quick Cal" message:@"Enter cell mV/V" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+            
+            [alertMvPerV setAlertViewStyle:UIAlertViewStylePlainTextInput];
+            [alertMvPerV textFieldAtIndex:0].placeholder = @"Enter cell mV/V";
+            [alertMvPerV textFieldAtIndex:0].keyboardType = UIKeyboardTypeDecimalPad;
+            
+            [alertMvPerV show];
+        }
+        else if (alertView == alertMvPerV)
+        {
+            cell_mv_per_v = [[alertMvPerV textFieldAtIndex:0] text].doubleValue;
+            
+            alertCellCount = [[UIAlertView alloc] initWithTitle:@"Quick Cal" message:@"Enter number of cells" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok", nil];
+            
+            [alertCellCount setAlertViewStyle:UIAlertViewStylePlainTextInput];
+            [alertCellCount textFieldAtIndex:0].placeholder = @"Number of cells";
+            [alertCellCount textFieldAtIndex:0].keyboardType = UIKeyboardTypeDecimalPad;
+            
+            [alertCellCount show];
+        }
+        else if (alertView == alertCellCount)
+        {
+            cell_count = [[alertCellCount textFieldAtIndex:0] text].doubleValue;
+            
+            if(connState == connected)
+            {
+                double convert_lb_kg = 0.453592;
+                double convert_kg_lb = 1 / convert_lb_kg;
+                double conv_factor = ((cell_mv_per_v * 5) / (cell_capacity * cell_count)) * 380000;
+                
+                if ([cell_units  isEqualToString: @"lb"] && [op_units  isEqualToString: @"kg"])
+                {
+                    conv_factor /= convert_lb_kg;
+                    [oStream write:(const uint8_t *)"\nX>UNITS= kg\r" maxLength:strlen("\nX>UNITS= kg\r")];
+                }
+                else if ([cell_units  isEqualToString: @"kg"] && [op_units  isEqualToString: @"lb"])
+                {
+                    conv_factor /= convert_kg_lb;
+                    [oStream write:(const uint8_t *)"\nX>UNITS= lb\r" maxLength:strlen("\nX>UNITS= kg\r")];
+                }
+                else
+                {
+                    if ([op_units isEqualToString:@"lb"])
+                    {
+                        [oStream write:(const uint8_t *)"\nX>UNITS= lb\r" maxLength:strlen("\nX>UNITS= kg\r")];
+                    }
+                    else if ([op_units isEqualToString:@"kg"])
+                    {
+                        [oStream write:(const uint8_t *)"\nX>UNITS= kg\r" maxLength:strlen("\nX>UNITS= kg\r")];
+                    }
+                }
+                
+                uint8_t buf[128];
+                
+                sprintf((char*)buf, "\nX>CONVFACTOR=%f\r", conv_factor);
+                
+                [oStream write:buf maxLength:strlen((char*)buf)];
+            }
+        }
     }
 }
 
